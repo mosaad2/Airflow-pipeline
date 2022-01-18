@@ -20,8 +20,7 @@ def make_database():
 
         trans=conn.begin()
 
-        create_table = "CREATE TABLE IF NOT EXISTS imdb_table (id varchar(20), name varchar(45), type varchar(50), cast text,`rank` int, year varchar(20), img_url text, img_height double, img_width double, v text, vt int, active_years varchar(20));" 
-    
+        create_table = "CREATE TABLE IF NOT EXISTS imdb_table (country varchar(20), domains varchar(45), name text, state_province varchar(20),web_pages text,alpha_two_code varchar(20));"   
         conn.execute(create_table)
         trans.commit()
         conn.close()
