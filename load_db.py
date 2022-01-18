@@ -15,8 +15,9 @@ def load_data():
 			if row!=header:
 				cursor.execute(
 				 """INSERT INTO imdb_table 
-                                        (id, name, type, cast, `rank`, year, img_url, img_height, img_width, v, vt, active_year)                                        VALUES
-                                        (%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                                        (country,domains,name, state_province, web_pages,alpha_two_code)
+                                        VALUES
+                                        (%s,%s,%s,%s,%s,%s)""",
 					row,
 		)
 	trans.commit()
