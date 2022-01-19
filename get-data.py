@@ -71,9 +71,10 @@ header = [
 for mov in normalized_data:
     csv_writer.writerow(mov.__dict__.values())
 
+
 for mov in data:
-    if state_province ==" ":
-        state_province = None
-   
+  if state_province ==" ":
+    state_province = None
+ 
 
 f.close()
