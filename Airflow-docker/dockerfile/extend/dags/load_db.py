@@ -12,8 +12,10 @@ def load_data():
 	with open('/root/airflow/dags/imdb_data.csv', 'r') as f:
 		reader = csv.reader(f)
 		for row in reader:
-			if row!=header:
-				cursor.execute(
+			if skipHeader:
+				skipHeader = False
+				continue
+			conn.execute(
 				 """INSERT INTO imdb_table 
                                         (country,domains,name, state_province, web_pages,alpha_two_code)
                                         VALUES
@@ -22,7 +24,7 @@ def load_data():
 		)
 	trans.commit()
 	print("data inserted")
-	cursor.close()
+	conn.close()
 	
 	
 
