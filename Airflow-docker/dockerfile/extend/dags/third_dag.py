@@ -3,7 +3,8 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 from airflow.providers.mysql.hooks.mysql import MySqlHook
-
+from load_db import load_data
+from make_db import make_database
 
 
 
@@ -28,14 +29,14 @@ task1 = BashOperator(
 			bash_command='python3 ~/airflow/dags/get-data.py' ,
 			dag=dag)
 
-task2 = BashOperator(
-			task_id='second_dag',
-			bash_command='python3 ~/airflow/dags/second_dag.py' ,
+task2 = PythonOperator(
+			task_id='make_db',
+			PythonCallable=make_database ,
 			dag=dag)
 
-task3 = BashOperator(
-			task_id='make_db',
-			bash_command='python3 ~/airflow/dags/make_db.py' ,
+task3 = PythonOperator(
+			task_id='load_db',
+			PythonCallable=load_data,
 			dag=dag)
 
 
